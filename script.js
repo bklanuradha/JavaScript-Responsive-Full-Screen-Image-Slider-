@@ -7,6 +7,14 @@ var rightArrow = document.querySelector('.right');
 var slideInt;  //store on going Timer
 var intTime = 5000;
 
+// Iterate All Radio Navigation Buttons
+rbtn.forEach(function(item, index){
+    // click events for Button
+    item.addEventListener('click', function(){
+        manButtonNav(index);
+    })
+});
+
 // Click events for Arrows
 // right Arrow
 rightArrow.addEventListener('click', function(e){
@@ -21,6 +29,22 @@ leftArrow.addEventListener('click', function(e){
     prevSlide();
     clrInterval();
 });
+
+// function for Radio Navigation
+function manButtonNav(index){
+    for(var i = 0; i < slides.length; i++){
+        // set slide and radio navigation button
+        if(i !== index){
+            slides[i].classList.remove('curr');
+            rbtn[i].classList.remove('active');
+        }
+        else{
+            slides[index].classList.add('curr');
+            rbtn[index].classList.add('active');
+        }
+    }
+    clrInterval();
+}
 
 // Function For the next slide
 function nextSlide(){
